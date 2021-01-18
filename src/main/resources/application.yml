@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    # excluded-view-names:
+    # template-resolver-order:
+    # view-names:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      show_sql: true
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: jdbc:mysql://mysqlserver:3306/urlmonitor
+    username: user
+    password: password
+
+#    url: jdbc:mysql://127.0.0.1:3306/testschema
+#    username: user
+#    password: password
+logging:
+  level:
+    root: WARN
+    com.memorynotfound: DEBUG
+    org.springframework.sql: DEBUG
+    org.springframework.type: TRACE
+    org.springframework.web: INFO
+    org.springframework.security: INFO

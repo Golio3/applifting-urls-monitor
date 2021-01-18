@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{urlmonitor/fragments/layoutMonitoring}">
+<head>
+    <title>Edit endpoint</title>
+</head>
+<body>
+<div layout:fragment="monitoring" th:remove="tag">
+    <form th:action="@{/urlmonitor/endpoints/save}" th:object="${endpoint}" accept-charset="UTF-8" method="post"
+          enctype="multipart/form-data">
+        <input type="hidden" th:field="${endpoint.id}">
+        <input type="hidden" th:field="${endpoint.user}">
+        <div class="form-group">
+            <label for="name">Name</label>:
+            <input type="text"
+                   id="name"
+                   name="name"
+                   class="form-control"
+                   autofocus="autofocus"
+                   placeholder="Name"
+                   th:field="${endpoint.name}">
+            <label class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</label>
+        </div>
+        <div class="form-group">
+            <label for="url">Url</label>:
+            <input type="text"
+                   id="url"
+                   name="url"
+                   class="form-control"
+                   autofocus="autofocus"
+                   placeholder="Url"
+                   th:field="${endpoint.url}">
+            <label class="alert alert-danger" th:if="${#fields.hasErrors('url')}" th:errors="*{url}">Url Error</label>
+        </div>
+        <div class="form-group">
+            <label for="monitoredInterval">Monitored interval</label>:
+            <input type="number"
+                   id="monitoredInterval"
+                   name="monitoredInterval"
+                   class="form-control"
+                   autofocus="autofocus"
+                   placeholder="Monitored interval"
+                   th:field="${endpoint.monitoredInterval}">
+            <label class="alert alert-danger" th:if="${#fields.hasErrors('monitoredInterval')}" th:errors="*{monitoredInterval}">Monitored interval Error</label>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    <input type="submit"
+                           class="form-control btn btn-info"
+                           value="Save">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{urlmonitor/fragments/layoutMonitoring}">
+<head>
+    <title>User</title>
+</head>
+
+<body>
+<div layout:fragment="monitoring" th:remove="tag">
+    <form th:action="@{/urlmonitor/users/save}" th:object="${user}" accept-charset="UTF-8" method="post">
+        <div class="row">
+            <div th:if="${user.errors != null && user.errors.length() > 0}">
+                <div class="alert alert-danger">
+                    <label th:text="${user.errors}"></label>
+                </div>
+            </div>
+            <div class="col-md-6 mb20">
+                <input type="hidden" th:field="${user.id}">
+                <input type="hidden" th:field="${user.active}">
+                <input type="hidden" th:field="${user.roles}">
+                <div class="form-group">
+                    <label for="username">Username</label>:
+                    <input type="text"
+                           id="username"
+                           name="username"
+                           class="form-control"
+                           autofocus="autofocus"
+                           placeholder=""
+                           th:field="${user.username}">
+                    <label class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</label>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>:
+                    <input type="text"
+                           id="email"
+                           name="email"
+                           class="form-control"
+                           placeholder=""
+                           th:field="${user.email}">
+                    <label class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="password">Password</label>:
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           class="form-control"
+                           placeholder=""
+                           th:field="${user.password}">
+                    <label class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</label>
+                </div>
+                <div class="form-group">
+                    <label for="repeatPassword">Repeat password</label>:
+                    <input type="password"
+                           id="repeatPassword"
+                           name="repeatPassword"
+                           class="form-control"
+                           placeholder=""
+                           th:field="${user.repeatPassword}">
+                    <label class="alert alert-danger" th:if="${#fields.hasErrors('repeatPassword')}" th:errors="*{repeatPassword}">Repeat password Error</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="submit"
+                                       name="reg-submit"
+                                       id="reg-submit"
+                                       class="form-control btn btn-info"
+                                       value="Save">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

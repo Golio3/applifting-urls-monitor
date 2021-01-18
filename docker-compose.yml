@@ -1,0 +1,21 @@
+version: '3'
+services:
+  mysqlserver:
+    container_name: mysqlserver
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=urlmonitor
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - 3306:3306
+
+  applifting-urls-monitor:
+    container_name: applifting-urls-monitor
+    image: applifting-urls-monitor
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    depends_on:
+      - mysqlserver

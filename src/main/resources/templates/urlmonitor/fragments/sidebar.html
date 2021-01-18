@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<body>
+<th:block th:fragment="sidebar">
+    <div class="sidebar">
+        <ul class="nav nav-sidebar">
+            <li><a href="/urlmonitor/endpoints">Endpoints</a></li>
+            <li><a href="/urlmonitor/results">Results</a></li>
+            <li sec:authorize="hasRole('ADMIN')"><a href="/urlmonitor/users">Users</a></li>
+        </ul>
+    </div>
+</th:block>
+</body>
+</html>

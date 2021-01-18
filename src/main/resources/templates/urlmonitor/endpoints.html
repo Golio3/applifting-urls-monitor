@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{urlmonitor/fragments/layoutMonitoring}">
+<head>
+    <title>Endpoints</title>
+</head>
+<body>
+<div layout:fragment="monitoring" th:remove="tag">
+    <h1><span>Endpoints</span></h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <form id="endpointsForm" th:action="@{/urlmonitor/endpoints}" th:object="${endpoints}">
+                    <div th:if="${#lists.isEmpty(endpoints)}" class="alert alert-info" role="alert">
+                        Endpoints not found
+                    </div>
+                    <div th:if="${not #lists.isEmpty(endpoints)}">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr th:each="endpoint,stat : ${endpoints}" class="toggles">
+                                <td>
+                                    <div class="alert alert-info alertTitle" role="alert">
+                                        <span th:text="${endpoint.name}"></span>
+                                    </div>
+                                </td>
+                                <td class="action">
+                                    <a th:href="@{'/urlmonitor/endpoints/edit/{id}'(id=${endpoint.id})}"
+                                       class="btn btn-primary">
+                                        <span aria-hidden="" class="glyphicon glyphicon-edit"></span>
+                                    </a>
+                                    <a th:href="@{'/urlmonitor/endpoints/delete/{id}'(id=${endpoint.id})}"
+                                       class="btn btn-danger">
+                                        <span aria-hidden="" class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary btn-lg btn-block btn-add-toggle"
+                   th:href="@{'/urlmonitor/endpoints/add'}">+</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

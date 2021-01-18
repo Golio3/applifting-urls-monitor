@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{urlmonitor/fragments/layoutMonitoring}">
+<head>
+    <title>Monitoring results</title>
+        <meta http-equiv="refresh" content="5">
+</head>
+<body>
+<div layout:fragment="monitoring" th:remove="tag">
+    <h1><span>Monitoring results</span></h1>
+    <div class="container-fluid">
+        <div th:if="${#lists.isEmpty(endpoints)}" class="alert alert-info" role="alert">
+            Endpoints not found
+        </div>
+        <div th:if="${not #lists.isEmpty(endpoints)}">
+            <div th:each="endpoint,stat : ${endpoints}">
+                <div class="row">
+                    <div class="col-sm-10 col-xs-8 alert alert-info alertTitle" role="alert">
+                        <span th:text="${endpoint.name}"></span>
+                    </div>
+                    <div class="col-sm-2 col-xs-4">
+                        <a th:href="@{'/urlmonitor/results/start/{id}'(id=${endpoint.id})}"
+                           class="btn btn-primary">
+                            <span aria-hidden="" class="glyphicon glyphicon-play"></span>
+                        </a>
+                        <a th:href="@{'/urlmonitor/results/stop/{id}'(id=${endpoint.id})}"
+                           class="btn btn-danger">
+                            <span aria-hidden="" class="glyphicon glyphicon-stop"></span>
+                        </a>
+                    </div>
+
+                    <div th:if="${#lists.isEmpty(endpoint.monitoringResultList)}"
+                         class="col-xs-12 alert alert-danger" role="alert">
+                        Monitoring results not found
+                    </div>
+                    <div th:if="${not #lists.isEmpty(endpoint.monitoringResultList)}">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Check date</th>
+                                <th scope="col">Http status code</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="result : ${endpoint.monitoringResultList}">
+                                <td>
+                                    <span th:text="${#dates.format(result.lastCheckDate, 'dd.MM.yyyy HH:mm')}"></span>
+                                </td>
+                                <td>
+                                    <span th:text="${result.httpStatusCode}"></span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

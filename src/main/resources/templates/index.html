@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{urlmonitor/fragments/layout}">
+
+<body>
+<div layout:fragment="content" th:remove="tag" class="container">
+    <br/><br/>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form action="/registration">
+                    <button class="form-control btn btn-primary" type="submit">Registration</button>
+                </form>
+                <br>
+                <form action="/urlmonitor/endpoints">
+                    <button class="form-control btn btn-primary" type="submit">Log in</button>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

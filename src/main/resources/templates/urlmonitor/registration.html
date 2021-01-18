@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{urlmonitor/fragments/layoutLogin}">
+<head>
+    <title>Registration</title>
+</head>
+<body>
+<div layout:fragment="login" th:remove="tag">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1><span>Registration</span></h1>
+                <form th:action="@{/registration}" th:object="${reg}" accept-charset="UTF-8" method="post">
+                    <div th:if="${reg.errors != null && reg.errors.length() > 0}">
+                        <div class="alert alert-danger">
+                            <label th:text="${reg.errors}"></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>:
+                        <input type="text"
+                               id="username"
+                               name="username"
+                               class="form-control"
+                               autofocus="autofocus"
+                               placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>:
+                        <input type="email"
+                               id="email"
+                               name="email"
+                               class="form-control"
+                               placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>:
+                        <input type="password"
+                               id="password"
+                               name="password"
+                               class="form-control"
+                               placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="repeatPassword">Repeat password</label>:
+                        <input type="password"
+                               id="repeatPassword"
+                               name="repeatPassword"
+                               class="form-control"
+                               placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <input type="submit"
+                                       name="reg-submit"
+                                       id="reg-submit"
+                                       class="form-control btn btn-info"
+                                       value="Registration">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

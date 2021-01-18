@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{urlmonitor/fragments/layoutMonitoring}">
+<head>
+    <title>Users</title>
+</head>
+<body>
+<div layout:fragment="monitoring" th:remove="tag">
+    <h1><span>Users</span></h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <form id="usersForm" th:action="@{/urlmonitor/users}" th:object="${users}">
+                    <div th:if="${#lists.isEmpty(users)}" class="alert alert-info" role="alert">
+                        Users not found
+                    </div>
+                    <div th:if="${not #lists.isEmpty(users)}">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr th:each="user,stat : ${users}" class="toggles">
+                                <td>
+                                    <div class="alert alert-info alertTitle" role="alert">
+                                        <span th:text="${user.username}"></span>
+                                    </div>
+                                </td>
+                                <td class="action">
+                                    <a th:href="@{'/urlmonitor/users/edit/{id}'(id=${user.id})}" class="btn btn-primary">
+                                        <span aria-hidden="" class="glyphicon glyphicon-edit"></span>
+                                    </a>
+                                    <a th:href="@{'/urlmonitor/users/delete/{id}'(id=${user.id})}" class="btn btn-danger">
+                                        <span aria-hidden="" class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary btn-lg btn-block btn-add-toggle"
+                   th:href="@{'/urlmonitor/users/add'}">+</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

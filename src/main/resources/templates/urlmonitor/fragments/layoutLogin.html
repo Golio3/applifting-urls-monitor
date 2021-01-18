@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{urlmonitor/fragments/layout}">
+<body>
+
+<div layout:fragment="content" th:remove="tag">
+    <th:block th:replace="urlmonitor/fragments/header :: header"/>
+    <th:block layout:fragment="login"/>
+</div>
+</body>
+</html>
