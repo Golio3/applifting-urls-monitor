@@ -14,9 +14,7 @@ Navigate to the directory in which you cloned the project. Run the following com
       
       docker-compose up
 
-# Install
-
-Application usage:
+# Application usage:
  
  1) Go to your app location (default http: // localhost: 8080)
  2) Register a new user ("Registration" button) or log in using an existing administrator profile (admin / admin)
